@@ -29,7 +29,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'mvn deploy -X'
+                 withMaven(maven: 'maven', mavenSettingsConfig: '5cfcfffc-fac7-4f67-828b-c19ec8c40a7b') {
+                    sh 'mvn deploy -X'
+                }
             }
         }
     }
