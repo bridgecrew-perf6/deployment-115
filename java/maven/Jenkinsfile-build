@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Show settings') {
             steps {
-                configFileProvider([configFile(fileId: 'fc965d6b-1147-498c-a585-2a9f94337140')]) {
+                configFileProvider([configFile(fileId: 'b643e45e-fe5a-4012-be4d-585b1dd445e5')]) {
                     sh 'mvn help:effective-settings'
                 }
             }
