@@ -20,17 +20,10 @@ pipeline {
                 sh 'mvn clean verify'
             }
         }
-        stage('Show settings') {
-            steps {
-                withMaven(maven: 'maven', mavenSettingsConfig: '5cfcfffc-fac7-4f67-828b-c19ec8c40a7b') {
-                    sh 'mvn help:effective-settings'
-                }
-            }
-        }
         stage('Deploy') {
             steps {
                  withMaven(maven: 'maven', mavenSettingsConfig: '5cfcfffc-fac7-4f67-828b-c19ec8c40a7b') {
-                    sh 'mvn deploy -X'
+                    sh 'mvn deploy -DaltDeploymentRepository=releaseRepository::default::http://nexus:8081/repository/maven/releases/ -DaltSnapshotDeploymentRepository=releaseRepository::default::http://nexus:8081/repository/maven/snapshots/'
                 }
             }
         }
