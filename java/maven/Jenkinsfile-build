@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Show settings') {
             steps {
-                withMaven(mavenSettingsConfig: '5cfcfffc-fac7-4f67-828b-c19ec8c40a7b') {
+                withMaven(maven: 'maven', mavenSettingsConfig: '5cfcfffc-fac7-4f67-828b-c19ec8c40a7b') {
                     sh 'mvn help:effective-settings'
                 }
             }
