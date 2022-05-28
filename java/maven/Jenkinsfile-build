@@ -23,14 +23,14 @@ pipeline {
         stage('Show settings') {
             steps {
                 configFileProvider([configFile(fileId: 'fc965d6b-1147-498c-a585-2a9f94337140')]) {
-                    sh 'mvn -s $MVN_SETTINGS help:effective-settings'
+                    sh 'mvn help:effective-settings'
                 }
             }
         }
         stage('Deploy') {
             steps {
                 configFileProvider([configFile(fileId: 'fc965d6b-1147-498c-a585-2a9f94337140')]) {
-                    sh 'mvn deploy -s $MVN_SETTINGS -X'
+                    sh 'mvn deploy -X'
                 }
             }
         }
