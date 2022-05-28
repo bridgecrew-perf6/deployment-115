@@ -20,6 +20,11 @@ pipeline {
                 sh 'mvn clean verify'
             }
         }
+        stage('Show settings') {
+            steps {
+                sh 'mvn help:effective-settings'
+            }
+        }
         stage('Deploy') {
             steps {
                 sh 'mvn deploy -X'
