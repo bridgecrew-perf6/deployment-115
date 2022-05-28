@@ -29,9 +29,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                configFileProvider([configFile(fileId: 'fc965d6b-1147-498c-a585-2a9f94337140')]) {
-                    sh 'mvn deploy -X'
-                }
+                sh 'mvn deploy -X'
             }
         }
     }
