@@ -22,7 +22,9 @@ pipeline {
         }
         stage('Show settings') {
             steps {
-                sh 'mvn help:effective-settings'
+                withMaven() {
+                    sh 'mvn help:effective-settings'
+                }
             }
         }
         stage('Deploy') {
