@@ -29,8 +29,11 @@ pipeline {
         }
          stage('Deploy') {
             when {
-                branch 'main',
-                params.DEPLOY == true
+                expression {
+                    GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abrevv-ref HEAD').trim()
+                    
+                    return GIT_BRANCH == 'origin/main' && params.DEPLOY == true
+                }
             }
             steps {
                 echo 'Deploying'
