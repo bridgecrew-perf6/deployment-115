@@ -29,8 +29,8 @@ pipeline {
         }
          stage('Deploy') {
             when {
-                branch 'main'
-                name: 'DEPLOY', value: true
+                branch 'main',
+                params.DEPLOY == true
             }
             steps {
                 echo 'Deploying'
