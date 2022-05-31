@@ -3,13 +3,16 @@ pipeline {
        tools {
         nodejs 'nodejs'
     }
+    parameters {
+        booleanParam(name: 'DEPLOY', defaultvalue: false, description: 'Deploy to npm')
+    }
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        stage('Build') {
+        stage('Install dependencies') {
             steps {
                 sh 'npm install'
             }
@@ -17,6 +20,21 @@ pipeline {
         stage('Lint') {
             steps {
                 sh 'npm run lint'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+         stage('Deploy') {
+            when {
+                branch 'main'
+                name: 'DEPLOY', value: true
+            }
+            steps {
+                echo 'Deploying'
+                sh 'npm run deploy'
             }
         }
     }
