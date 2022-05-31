@@ -4,7 +4,7 @@ pipeline {
         nodejs 'nodejs'
     }
     parameters {
-        booleanParam(name: 'DEPLOY', defaultvalue: false, description: 'Deploy to npm')
+        booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Deploy to npm')
     }
     stages {
         stage('Checkout') {
