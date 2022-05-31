@@ -31,7 +31,7 @@ pipeline {
             when {
                 expression {
                     GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abrevv-ref HEAD').trim()
-                    
+                    echo 'git branch' + GIT_BRANCH
                     return GIT_BRANCH == 'origin/main' && params.DEPLOY == true
                 }
             }
