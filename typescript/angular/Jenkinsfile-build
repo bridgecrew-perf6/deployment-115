@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'npm test'
+                sh 'export chrome_bin=/chromium/latest && npm test'
             }
         }
     }
